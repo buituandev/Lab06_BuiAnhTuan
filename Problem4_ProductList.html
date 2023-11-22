@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <script>
+        let products = [
+            {
+                "ID": 1,
+                "Name": "Laptop",
+                "Quantity": 5,
+                "Price": 1200,
+                "Image": "laptop_image. jpg"
+            },
+            {
+                "ID": 2, "Name": "Phone", "Quantity": 10, "Price": 800, "Image":
+                    "phone_image. jpg"
+            },
+            {
+                "ID": 3, "Name": "Tablet", "Quantity": 8, "Price": 500, "Image":
+                    "tablet_image.jpg"
+            }
+        ]
+        function sort() {
+            products.sort(def);
+            console.log("Initial Products:");
+            console.log(products);
+        }
+        function def(a, b) {
+            let x = a.Name.toLowerCase();
+            let y = b.Name.toLowerCase();
+            if (x < y) { return -1; }
+            if (x > y) { return 1; }
+            return 0;
+        }
+        let headProduct =
+        {
+            "ID": 4,
+            "Name": "Smartwatch",
+            "Quantity": 15,
+            "Price": 200,
+            "Image": "watch_image. jpg"
+        }
+        let tailProduct = {
+            "ID": 5,
+            "Name": "Camera",
+            "Quantity": 3,
+            "Price": 600,
+            "Image": "camera_image. jpg"
+        }
+        function add() {
+            products.unshift(headProduct);
+            products.push(tailProduct);
+            console.log("Updated products:");
+            console.log(products);
+        }
+
+        function search() {
+            let search = document.getElementById("searchBar").value;
+            for (let i = 0; i < products.length; i++) {
+                if (products[i].Name.toLowerCase().includes(search.toLowerCase())) {
+                    console.log("Search results:")
+                    console.log(products[i]);
+                }
+            }
+        }
+        function removeByID() {
+            let id = document.getElementById("id").value;
+            for (let i = 0; i < products.length; i++) {
+                if (products[i].ID == id) {
+                    products.splice(i, 1);
+                    console.log("Updated products:");
+                    console.log(products);
+                }
+            }
+        }
+        function editProductByID() {
+            let id = document.getElementById("editID").value;
+            for (let i = 0; i < products.length; i++) {
+                if (products[i].ID == id) {
+                    products[i].Name = document.getElementById("name").value;
+                    products[i].Quantity = document.getElementById("quantity").value;
+                    products[i].Price = document.getElementById("price").value;
+                    products[i].Image = document.getElementById("image").value;
+                    console.log("Updated products:");
+                    console.log(products);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p><button onclick="sort()">Sort</button>
+        <button onclick="add()">Add</button>
+    </p>
+    <p> <input id="searchBar" type="search">
+        <button onclick="search()">Search</button>
+    </p>
+    <p><input type="text" id="id">
+        <button onclick="removeByID()">Delete</button>
+    </p>
+    <p style="display: flex; flex-flow: column; width: 300px;"> <input type="text" id="editID" placeholder="Enter ID to edit">
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="quantity" placeholder="Quantity">
+        <input type="text" id="price" placeholder="Price">
+        <input type="text" id="image" placeholder="Image">
+    </p>
+    <button onclick="editProductByID()">Edit</button>
+
+</body>
+
+</html>
