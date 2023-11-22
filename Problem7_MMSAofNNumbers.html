@@ -8,20 +8,17 @@
     <script>
         function calcMMSA() {
             let n = document.getElementById('input').value;
-            let result = 'true';
-            if (n < 1 || !n) {
-                document.getElementById('result').innerHTML = 'Please enter a valid positive integer.';
-                return;
-            } else {
-                for (let i = 2; i < n; i++) {
-                    if (n % i == 0) {
-                        result = 'false';
-                        break;
-                    }
-                }
+            var numbers = [];
+            numbers.add(n.split(','));
+            numbers = numbers.flat();
+            let max = Math.max(...numbers), min = Math.min(...numbers), sum = 0, avg = 0;
+            for (let i = 0; i < numbers.length; i++) {
+                sum += Number(numbers[i]);
             }
-            if (n == 1) result = 'false';
-            document.getElementById('result').innerHTML = result;
+            avg = Math.round((sum / numbers.length)*100)/100; 
+
+            document.getElementById('result').innerHTML = 'min=' + min + '<br>max=' + max + '<br>sum=' + sum + '<br>avg=' + avg;
+
         }
     </script>
 </head>
@@ -31,8 +28,8 @@
         <h3>
             MMSA of N Numbers
         </h3>
-        <p>Enter a positive integer N: <input type="text" class="input" id="input"><input type="button"
-                value="Print Numbers" onclick="checkPrime()"></p>
+        <p>Enter numbers seperated by commas: <input type="text" class="input" id="input"><input type="button"
+                value="Caculate MMSA" onclick="calcMMSA()"></p>
         <p id="result"></p>
     </div>
 </body>
